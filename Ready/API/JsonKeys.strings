@@ -1,0 +1,18 @@
+/* 
+  JsonKeys.strings
+  Ready
+
+  Created by Adrian Popovici on 23/02/2019.
+  Copyright © 2019 m.ready. All rights reserved.
+*/
+
+"id" = "id";
+"name" = "name";
+"full_name" = "full_name";
+"link" = "url";
+"forks" = "forks_count";
+"owner" = "owner";
+"login" = "login";
+"watchers" = "watchers";
+"stars" = "stargazers_count";
+"content" = "content";

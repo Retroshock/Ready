@@ -1,0 +1,44 @@
+PODS:
+  - Alamofire (4.8.0)
+  - MarkdownView (1.5.0)
+  - PromiseKit/Alamofire (6.5.3):
+    - Alamofire (~> 4.0)
+    - PromiseKit/CorePromise
+  - PromiseKit/CorePromise (6.5.3)
+  - R.swift (4.0.0):
+    - R.swift.Library (~> 4.0.0)
+  - R.swift.Library (4.0.0)
+  - SVProgressHUD (2.2.5)
+  - SwiftyJSON (4.2.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - MarkdownView
+  - PromiseKit/Alamofire (~> 6.0)
+  - PromiseKit/CorePromise (~> 6.5.3)
+  - R.swift
+  - SVProgressHUD
+  - SwiftyJSON (~> 4.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - MarkdownView
+    - PromiseKit
+    - R.swift
+    - R.swift.Library
+    - SVProgressHUD
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  MarkdownView: 5bbee438c823db1cd189002d44c84fa909b3a896
+  PromiseKit: c609029bdd801f792551a504c695c7d3098b42cd
+  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
+  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+
+PODFILE CHECKSUM: 2254e39782c08d1cf324a9795eea3453a89e6874
+
+COCOAPODS: 1.5.3
