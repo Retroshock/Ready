@@ -11,10 +11,17 @@ import PromiseKit
 import SVProgressHUD
 import UIKit
 
+protocol RepoDetailsViewControllerDelegate: class {
+    func getViewModel(forName name: String) -> Promise<RepoDetailsViewModel>
+    func getReadMe(forName name: String) -> Promise<String>
+}
+
 class RepoDetailsViewController: UIViewController {
 
     private var viewModel: RepoDetailsViewModel!
     private var name: String!
+
+    private weak var delegate: RepoDetailsViewControllerDelegate?
 
     @IBOutlet private weak var readMeView: MarkdownView!
 
@@ -24,8 +31,10 @@ class RepoDetailsViewController: UIViewController {
     @IBOutlet private weak var userLabel: UILabel!
     @IBOutlet private weak var linkLabel: UILabel!
 
-    func configure(withRepoName repoName: String) {
+    func configure(withRepoName repoName: String,
+                   andDelegate delegate: RepoDetailsViewControllerDelegate) {
         self.name = repoName
+        self.delegate = delegate
     }
 
     override func viewDidLoad() {
@@ -35,17 +44,17 @@ class RepoDetailsViewController: UIViewController {
 
         SVProgressHUD.show()
 
-        self.getReadMeMarkupText().map(on: .main) { [weak self] content in
+        self.getReadMeMarkupText()?.map(on: .main) { [weak self] content in
             guard let `self` = self else { return }
             guard let data = Data(base64Encoded: content, options: .ignoreUnknownCharacters) else {
                 print("Could not decode: \(content)")
-                throw CommonErrors.cannotDecode
+                throw JSONError.couldNotDecode
             }
             self.readMeView.load(markdown: String(data: data, encoding: .utf8))
             self.readMeView.isScrollEnabled = true
         }.then { [weak self] _ -> Promise<Void> in
             guard let `self` = self else { return .value(())}
-            return self.getDetails()
+            return self.getViewModel() ?? .value(())
         }.done { [weak self] _ in
             guard let `self` = self else { return }
             self.updateViews(withViewModel: self.viewModel)
@@ -59,24 +68,14 @@ class RepoDetailsViewController: UIViewController {
 
     }
 
-    private func getDetails() -> Promise<Void> {
-        return Request(withBaseURL: APIPaths.baseURL,
-                path: APIPaths.specificRepo(repoName: name),
-                parameters: nil)
-            .get()
-            .done { detailsJSON in
-                self.viewModel = RepoDetailsViewModel(repo: detailsJSON)
-            }
+    private func getViewModel() -> Promise<Void>? {
+        return delegate?.getViewModel(forName: name).done { viewModel in
+            self.viewModel = viewModel
+        }
     }
 
-    private func getReadMeMarkupText() -> Promise<String> {
-        return Request(withBaseURL: APIPaths.baseURL,
-                       path: APIPaths.readmeForRepo(repoName: name),
-                       parameters: nil)
-            .get()
-            .map { json in
-            return json[R.string.jsonKeys.content()].rawString()!
-        }
+    private func getReadMeMarkupText() -> Promise<String>? {
+        return delegate?.getReadMe(forName: name)
     }
 
     private func updateViews(withViewModel viewModel: RepoDetailsViewModel) {

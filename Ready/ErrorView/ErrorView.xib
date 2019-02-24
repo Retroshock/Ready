@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ErrorView" customModule="Ready" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="e9x-sX-mMk">
+                    <rect key="frame" x="97.5" y="133.5" width="180" height="400"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header_logo_mready" translatesAutoresizingMaskIntoConstraints="NO" id="feD-J6-Vs0">
+                            <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                            <color key="backgroundColor" red="0.54930072839999999" green="0.54930072839999999" blue="0.54930072839999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="180" id="Ead-SS-jfd"/>
+                                <constraint firstAttribute="width" secondItem="feD-J6-Vs0" secondAttribute="height" multiplier="1:1" id="Zbj-Xy-3s6"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUCH EMPTY, MUCH ERROR" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIR-UH-Twd">
+                            <rect key="frame" x="0.0" y="200" width="180" height="200"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="400" id="H7A-IT-XKA"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="0.54930072839999999" green="0.54930072839999999" blue="0.54930072839999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="e9x-sX-mMk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="97.5" id="8O9-wj-yii"/>
+                <constraint firstItem="e9x-sX-mMk" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="113.5" id="AoL-54-ffC"/>
+                <constraint firstItem="e9x-sX-mMk" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="FxT-T3-1XJ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="e9x-sX-mMk" secondAttribute="trailing" constant="97.5" id="b1d-nJ-djy"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="e9x-sX-mMk" secondAttribute="bottom" constant="133.5" id="dtd-Af-0pG"/>
+                <constraint firstItem="e9x-sX-mMk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="zJF-ZD-eao"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="errorLabel" destination="TIR-UH-Twd" id="CeI-zX-lkm"/>
+            </connections>
+            <point key="canvasLocation" x="138.40000000000001" y="149.77511244377811"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="header_logo_mready" width="270" height="270"/>
+    </resources>
+</document>

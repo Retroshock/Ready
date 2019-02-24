@@ -26,12 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                              launchOptions: launchOptions,
                                              containerViewController: containerViewController)
 
-
         self.appCoordinator.start()
 
         self.window?.rootViewController = containerViewController
         self.window?.makeKeyAndVisible()
-
 
         return true
     }

@@ -44,8 +44,16 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 0 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
   struct nib {
+    /// Nib `ErrorView`.
+    static let errorView = _R.nib._ErrorView()
+    
+    /// `UINib(name: "ErrorView", in: bundle)`
+    static func errorView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.errorView)
+    }
+    
     fileprivate init() {}
   }
   
@@ -179,9 +187,29 @@ struct R: Rswift.Validatable {
 struct _R: Rswift.Validatable {
   static func validate() throws {
     try storyboard.validate()
+    try nib.validate()
   }
   
-  struct nib {
+  struct nib: Rswift.Validatable {
+    static func validate() throws {
+      try _ErrorView.validate()
+    }
+    
+    struct _ErrorView: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "ErrorView"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> ErrorView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ErrorView
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "header_logo_mready", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'header_logo_mready' is used in nib 'ErrorView', but couldn't be loaded.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
     fileprivate init() {}
   }
   

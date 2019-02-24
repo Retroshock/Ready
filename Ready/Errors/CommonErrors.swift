@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum CommonErrors: Error {
+enum CommonError: Error {
     case couldNotInstantiateViewController
-    case cannotDecode
+    case selfGuardFailed
 }
